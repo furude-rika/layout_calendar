@@ -1,3 +1,78 @@
+@import "variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  display: flex;
+  justify-content: center;
+  font-family: $calendar-font;
+}
+
+.calendar {
+  width: 800px;
+  margin: 100px 0;
+  @include flex-centered;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  font-size: $calendar-font-size;
+}
+
+.calendar div {
+  @include flex-centered;
+  width: $cell-width;
+  height: $cell-height;
+  background-color: $cell-background;
+  border: 1px solid $cell-border-color;
+  margin: $cells-gap;
+  color: $cell-text-color;
+  &:first-child {
+    margin-left: $cell-width + ( $cells-gap * 2 );
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $cell-background-hover;
+    transform: translateY(-20px);
+    animation: bg-color-change 0.5s, cell-transform 0.5s;
+  }
+}
+
+@keyframes cell-transform {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes bg-color-change {
+  from {
+    background-color: $cell-background;
+  }
+
+  to {
+    background-color: $cell-background-hover;
+  }
+}
+
+@for $day from 1 through 31 {
+  .calendar div:nth-child(#{$day})::before {
+    content: "#{$day}";
+  }
+}
+
+@for $day from 28 through 31 {
+  .calendar-#{$day} div:nth-child(n+#{$day+1}) {
+    display: none;
+  }
+}
+
+@each $day, $num in $days {
+  .calendar-#{$day} div:first-child {
+    margin-left: ( $cell-width + ( $cells-gap * 2) ) * $num;
+  }
 }

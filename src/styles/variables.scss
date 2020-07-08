@@ -1,0 +1,16 @@
+$cell-width: 100px;
+$cell-height: 100px;
+$cell-background: #eee;
+$cell-background-hover: pink;
+$cell-border-color: #000;
+$cells-gap: 1px;
+$calendar-font: "Arial", sans-serif;
+$calendar-font-size: 30px;
+$cell-text-color: #000;
+$days: (mon: 0, tue: 1, wen: 2, thu: 3, fri: 4, sat: 5, sun: 6);
+
+@mixin flex-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
