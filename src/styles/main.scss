@@ -25,7 +25,7 @@ body {
   width: $cell-width;
   height: $cell-height;
   background-color: $cell-background;
-  border: 1px solid $cell-border-color;
+  border: $border-width solid $cell-border-color;
   margin: $cells-gap;
   color: $cell-text-color;
   &:hover {
